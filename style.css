@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  --white: #fff;
+  --box-shadow: 0px 4px 8px #c1c1c1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #dddddd;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  column-gap: 20rem;
+  justify-content: center;
+}
+
+.chartAmount {
+  position: relative;
+}
+
+#leftPart h3 {
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  margin-inline: auto 0;
+  transform: translate(-50%, -50%);
+}
+
+.totalAmount {
+  display: block;
+  font-size: 2rem;
+  color: #2ecc71;
+}
+
+h2 {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--white);
+  margin-block: 0 1rem;
+  padding-block: 0.7rem 1rem;
+  background-color: #1c2832;
+}
+
+#rightPart {
+  width: 40%;
+}
+
+#rightPart h3 {
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.transaction {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-block: 0 1.2rem;
+}
+
+.inc-exp-container {
+  display: flex;
+  padding: 20px;
+  margin: 20px 0;
+  justify-content: center;
+  background-color: var(--white);
+  box-shadow: var(--box--shadow);
+}
+
+.inc-exp-container > div {
+  flex: 1;
+  text-align: center;
+}
+
+.inc-exp-container > div:first-of-type {
+  border-right: 1px solid #dedede;
+}
+
+input,
+#select {
+  width: 100%;
+  padding: 10px;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 7px;
+  color: #727575;
+  border: 1px solid #e9e7e7;
+  box-shadow: 0px 4px 8px #c1c1c1;
+}
+
+#select {
+  font-weight: 300;
+  color: #686767;
+  text-align: left;
+  margin-block: 1.6rem;
+  padding: 0.5rem 0.7rem;
+  background-color: var(--white);
+}
+
+input::placeholder {
+  color: #6c6c6c;
+  text-align: left;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  display: block;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--white);
+  margin: 35px 0 30px;
+  background-color: #675eec;
+  box-shadow: var(--box-shadow);
+}
+
+.list {
+  padding: 0;
+  height: 10.5rem;
+  overflow: hidden;
+  margin-bottom: 40px;
+  list-style-type: none;
+}
+
+.list li {
+  width: 100%;
+  display: flex;
+  color: #333;
+  padding: 10px;
+  margin: 10px 0;
+  height: 2.7rem;
+  position: relative;
+  border-radius: 5px;
+  background-color: #f0efef;
+  box-shadow: 0px 4px 8px #c1c1c1;
+}
+
+ul span {
+  width: 100%;
+  text-align: center;
+}
+
+.feather:hover {
+  cursor: pointer;
+}
+
+.investment {
+  border-right: 8px solid #4a911c;
+}
+
+.Expense {
+  border-right: 8px solid rgb(117, 85, 42);
+}
+
+.Savings {
+  border-right: 8px solid rgb(82, 200, 216);
+}
+
+.list li:hover {
+  opacity: 1;
+}
+
+canvas {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 3rem;
+}
+
+#label {
+  position: relative;
+  margin-left: 2rem;
+}
+
+#label div {
+  display: flex;
+  color: #727575;
+  letter-spacing: 1px;
+  justify-content: space-between;
+}
+
+#label div span {
+  display: block;
+}
+
+#label div::before {
+  content: " ";
+  top: 1px;
+  left: -20px;
+  width: 8px;
+  height: 22px;
+  position: absolute;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: rgb(48, 20, 96);
+}
+
+.label2 {
+  position: relative;
+  margin-block: 0.4rem;
+}
+
+#label .label2::before {
+  background-color: rgb(27, 66, 92);
+}
+
+.label3 {
+  position: relative;
+}
+
+#label .label3::before {
+  background-color: rgb(78, 61, 21);
+}
