@@ -12,16 +12,11 @@
     <div class="container">
       <div id="leftPart">
         <div class="chartAmount">
-          <canvas id="myChart"></canvas>
+          <canvas id="myChart" style="display: inline"></canvas>
           <h3>
             Total
             <span class="totalAmount">₹0</span>
           </h3>
-        </div>
-        <div id="label">
-          <div class="lable1">Investment<span class="percent">%</span></div>
-          <div class="label2">Expense<span class="percent">%</span></div>
-          <div class="label3">Savings<span class="percent">%</span></div>
         </div>
       </div>
       <div id="rightPart">
@@ -37,7 +32,9 @@
           </div>
           <div class="form-control">
             <select name="TransactionOption" id="select">
-              <option value="Investment" selected>Investment</option>
+              <option value="Investment" selected="Investment">
+                Investment
+              </option>
               <option value="Expense">Expense</option>
               <option value="Savings">Savings</option>
             </select>
@@ -52,21 +49,17 @@
           </div>
           <button class="btn">Make Transaction</button>
         </form>
-        <h3>History</h3>
-        <ul id="list" class="list"></ul>
       </div>
-      <!-- <h1 id="balance">0.00</h1>
-      <div class="inc-exp-container">
-        <div>
-          <h4>Income</h4>
-          <p id="money-plus" class="money-plus">+0.00</p>
-        </div>
-        <div>
-          <h4>Expense</h4>
-          <p id="money-minus" class="money-minus">-0.00</p>
-        </div>
-      </div> -->
+      <img class="history" src="./history.svg" alt="history" />
+    </div>
+    <footer>
+      <h2>© Expense Tracker. All rights reserved.</h2>
+    </footer>
+    <div class="blur-bg"></div>
+    <div class="fullScreenHistory">
+      <img class="close" src="./close.svg" alt="close" />
+      <ul id="list" class="list"></ul>
     </div>
   </body>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </html>
