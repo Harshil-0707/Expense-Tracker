@@ -31,13 +31,13 @@ body {
   justify-content: center;
   margin-block: 1rem 1.69rem;
   background-color: #537489;
-  padding: 3rem 1rem 5rem 1rem;
+  padding: 1rem 1rem 3rem 1rem;
   box-shadow: 9px 7px 4.5px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .chartAmount {
-  width: 24rem;
-  height: 24rem;
+  width: 20rem;
+  height: 20rem;
   position: relative;
   margin-block: 0 3rem;
   border-radius: 50rem;
@@ -47,8 +47,8 @@ body {
 h2 {
   width: 100%;
   font-weight: 500;
-  position: relative;
   font-size: 1.9rem;
+  position: relative;
   text-align: center;
   color: var(--white);
   margin-block: 0 1rem;
@@ -75,6 +75,53 @@ h2 {
   display: block;
   font-size: 3rem;
   color: #2ecc71;
+}
+
+#label {
+  position: relative;
+  border-radius: 19px;
+  background-color: #edfbff;
+  padding: 1rem 1rem 1rem 2rem;
+}
+
+#label div {
+  display: flex;
+  color: #727575;
+  letter-spacing: 1px;
+  justify-content: center;
+}
+
+#label div::before {
+  content: " ";
+  top: 1px;
+  width: 8px;
+  left: -10px;
+  height: 26px;
+  position: absolute;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #0d6a74;
+}
+
+.label1 {
+  position: relative;
+}
+
+.label2 {
+  position: relative;
+  margin-block: 1rem;
+}
+
+#label .label2::before {
+  background-color: #2b2a25;
+}
+
+.label3 {
+  position: relative;
+}
+
+#label .label3::before {
+  background-color: #39505e;
 }
 
 #rightPart {
