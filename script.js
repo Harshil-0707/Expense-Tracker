@@ -22,11 +22,7 @@ let doughnut = new Chart("myChart", {
     datasets: [
       {
         data: [100, 100, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        backgroundColor: ["#0d6a74", "#2b2a25", "#39505e"],
         hoverOffset: 4,
         borderRadius: 28,
         spacing: 10,
@@ -34,7 +30,7 @@ let doughnut = new Chart("myChart", {
     ],
   },
   options: {
-    cutout: 144,
+    cutout: 114,
     aspectRatio: 1.05,
   },
 });
@@ -63,6 +59,7 @@ function addTransaction(e) {
     };
 
     updateChart(transaction);
+
     transactions.push(transaction);
     addTransactionDOM(transaction);
 
@@ -97,12 +94,12 @@ function addTransactionDOM(transaction) {
   const item = document.createElement("li");
 
   item.innerHTML = `
-  ${svg}<span> ${transaction.text}</span>`;
+  ${svg}<span>${transaction.text}</span>`;
   list.appendChild(item);
   item.onclick = (e) => {
     let elem = e.currentTarget.innerHTML;
     if (elem.includes("svg")) {
-      removeTransaction(transaction.id);
+      removeTransaction(transaction, transaction.id);
     }
   };
 }
@@ -115,9 +112,13 @@ function updateValues() {
 }
 
 //Remove Transaction by ID
-function removeTransaction(id) {
+function removeTransaction(getTransaction, id) {
   transactions = transactions.filter((transaction) => transaction.id !== id);
-  totalAmount.innerHTML = "₹";
+  totalAmount.innerHTML = "₹0";
+  if (totalAmount.innerHTML === "₹0") {
+    getTransaction.chartValues = [100, 100, 100];
+  }
+  updateChart(getTransaction);
   updateLocalStorage();
   Init();
 }
