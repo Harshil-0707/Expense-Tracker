@@ -290,7 +290,9 @@ footer h2 {
   width: 25rem;
   padding: 20px;
   position: fixed;
-  border-radius: 25px;
+  max-height: 30rem;
+  overflow-y: scroll;
+  border-radius: 15px;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 25px 25px 33.5px 13px rgba(0, 0, 0, 0.25);
