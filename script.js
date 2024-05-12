@@ -23,7 +23,7 @@ let doughnut = new Chart("myChart", {
       {
         data: [100, 100, 100],
         backgroundColor: ["#0d6a74", "#2b2a25", "#39505e"],
-        hoverOffset: 4,
+        hoverOffset: 3,
         borderRadius: 28,
         spacing: 10,
       },
@@ -55,11 +55,11 @@ function addTransaction(e) {
       id: generateID(),
       text: text.value,
       amount: +amount.value,
+      type: select.value,
       chartValues: chartDataValues,
     };
 
     updateChart(transaction);
-
     transactions.push(transaction);
     addTransactionDOM(transaction);
 
@@ -113,14 +113,43 @@ function updateValues() {
 
 //Remove Transaction by ID
 function removeTransaction(getTransaction, id) {
-  transactions = transactions.filter((transaction) => transaction.id !== id);
-  totalAmount.innerHTML = "₹0";
+  removeElement(id);
+  transactions = transactions.filter((t) => t.id !== id);
+  updateValues();
   if (totalAmount.innerHTML === "₹0") {
+    SavingsAmount = 0;
+    ExpenseAmount = 0;
+    InvestmentAmount = 0;
     getTransaction.chartValues = [100, 100, 100];
   }
   updateChart(getTransaction);
   updateLocalStorage();
   Init();
+}
+
+function removeElement(id) {
+  let removedTransactionType = 0;
+  let removedTransactionAmount = 0;
+  let i = 0;
+  for (; i < transactions.length; i++) {
+    if (transactions[i].id === id) {
+      removedTransactionAmount = transactions[i].amount;
+      removedTransactionType = transactions[i].type;
+      break;
+    }
+  }
+  for (; i < transactions.length; i++) {
+    if (transactions[i].id !== id) {
+      if (removedTransactionType === "Investment") {
+        console.log(removedTransactionAmount);
+        transactions[i].chartValues[0] -= removedTransactionAmount;
+      } else if (removedTransactionType === "Expense") {
+        transactions[i].chartValues[1] -= removedTransactionAmount;
+      } else {
+        transactions[i].chartValues[2] -= removedTransactionAmount;
+      }
+    }
+  }
 }
 
 //update Local Storage Transaction
