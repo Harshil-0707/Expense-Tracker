@@ -3,17 +3,37 @@ let ExpenseAmount = 0;
 let InvestmentAmount = 0;
 const list = document.getElementById("list");
 const form = document.getElementById("form");
+const date = document.querySelector(".date");
 const text = document.getElementById("text");
 const select = document.querySelector("select");
 const amount = document.getElementById("amount");
+const blurbg = document.querySelector(".blur-bg");
+const getDate = document.querySelector(".getDate");
+const inputDate = document.querySelector(".inputDate");
 const totalAmount = document.querySelector(".totalAmount");
-const toggleHistory = document.querySelectorAll("body img");
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
+const toggleHistory = document.querySelectorAll("body .img");
 
 const show = () => document.body.classList.toggle("show");
 
+function getCurrentDate() {
+  const getCurrentDate = new Date();
+  let day = getCurrentDate.getDate();
+  let month = getCurrentDate.getMonth() + 1;
+  let year = getCurrentDate.getFullYear();
+  day = day < 10 ? "0" + day : day;
+  month = month < 10 ? "0" + month : month;
+  const fullDate = `${day}/${month}/${year}`;
+  return fullDate;
+}
+
+blurbg.onclick = () => document.body.classList.remove("show");
+
 toggleHistory.forEach((toggle) => {
   toggle.addEventListener("click", show);
+});
+
+date.addEventListener("click", () => {
+  getDate.classList.toggle("display");
 });
 
 let doughnut = new Chart("myChart", {
@@ -50,6 +70,7 @@ function addTransaction(e) {
   } else {
     selectValues();
     const chartDataValues = [InvestmentAmount, ExpenseAmount, SavingsAmount];
+    const transactionDate = inputDate.value ? changeFormat() : getCurrentDate();
 
     const transaction = {
       id: generateID(),
@@ -57,6 +78,7 @@ function addTransaction(e) {
       amount: +amount.value,
       type: select.value,
       chartValues: chartDataValues,
+      transactionDate: transactionDate,
     };
 
     updateChart(transaction);
@@ -69,6 +91,26 @@ function addTransaction(e) {
     text.value = "";
     amount.value = "";
   }
+}
+
+function changeFormat() {
+  let selectedDate = new Date(inputDate.value);
+
+  // Get the day, month, and year
+  let day = selectedDate.getDate();
+  let month = selectedDate.getMonth() + 1; // Months are zero indexed
+  let year = selectedDate.getFullYear();
+
+  // Format the date as dd-mm-yyyy
+  let formattedDate =
+    (day < 10 ? "0" : "") +
+    day +
+    "-" +
+    (month < 10 ? "0" : "") +
+    month +
+    "-" +
+    year;
+  return formattedDate;
 }
 
 function updateChart(transaction) {
@@ -94,14 +136,37 @@ function addTransactionDOM(transaction) {
   const item = document.createElement("li");
 
   item.innerHTML = `
-  ${svg}<span>${transaction.text}</span>`;
+  <div class="top">
+    <img src="./trash.svg" class="trash" alt="trash"/>
+    <span>${transaction.text}</span>
+    <img src="./calendar.svg" class="calendar" alt="calendar">
+  </div>
+  <div class="parent">
+    <div class="second flex">
+      Date <div class="one">${transaction.transactionDate}</div>
+    </div>
+    <div class="third flex">
+      ${transaction.type}<div class="one">${transaction.amount}</div>
+    </div>
+  </div>
+  `;
+
   list.appendChild(item);
-  item.onclick = (e) => {
-    let elem = e.currentTarget.innerHTML;
-    if (elem.includes("svg")) {
+  item.addEventListener("click", function (event) {
+    if (event.target.classList.contains("trash")) {
       removeTransaction(transaction, transaction.id);
+    } else {
+      if (event.target.classList.contains("calendar")) {
+        let cal = document.querySelectorAll(".calendar");
+        cal.forEach((toggle) => {
+          toggle.addEventListener("click", (e) => {
+            let element = e.currentTarget.parentElement.nextElementSibling;
+            element.classList.toggle("flex");
+          });
+        });
+      }
     }
-  };
+  });
 }
 
 //Update the balance income and expence
@@ -141,7 +206,6 @@ function removeElement(id) {
   for (; i < transactions.length; i++) {
     if (transactions[i].id !== id) {
       if (removedTransactionType === "Investment") {
-        console.log(removedTransactionAmount);
         transactions[i].chartValues[0] -= removedTransactionAmount;
       } else if (removedTransactionType === "Expense") {
         transactions[i].chartValues[1] -= removedTransactionAmount;

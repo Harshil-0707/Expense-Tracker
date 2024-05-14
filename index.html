@@ -6,6 +6,7 @@
     <title>Expense Tracker</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./icon.svg" />
   </head>
   <body>
     <h2>Expense Tracker</h2>
@@ -28,6 +29,10 @@
         <h4 class="transaction">Transaction</h4>
         <form id="form">
           <div class="form-control">
+            <img class="date" src="./calendar.svg" alt="Date" />
+            <div class="getDate">
+              <input class="inputDate" type="date" />
+            </div>
             <input
               type="text"
               id="text"
@@ -55,14 +60,14 @@
           <button class="btn">Make Transaction</button>
         </form>
       </div>
-      <img class="history" src="./history.svg" alt="history" />
+      <img class="history img" src="./history.svg" alt="history" />
     </div>
     <footer>
       <h2>© Expense Tracker. All rights reserved.</h2>
     </footer>
     <div class="blur-bg"></div>
     <div class="fullScreenHistory">
-      <img class="close" src="./close.svg" alt="close" />
+      <img class="close img" src="./close.svg" alt="close" />
       <ul id="list" class="list"></ul>
     </div>
   </body>

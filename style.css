@@ -20,16 +20,20 @@ body {
   flex-direction: column;
   justify-content: center;
   background-color: #edfbff;
+  @media (min-width: 1056px) {
+    height: 120dvh;
+  }
 }
 
 .container {
   width: 90%;
+  height: 90%;
   display: flex;
   position: relative;
   align-items: center;
   border-radius: 28px;
   justify-content: center;
-  margin-block: 1rem 1.69rem;
+  margin-block: 2dvh 4dvh;
   background-color: #537489;
   padding: 1rem 1rem 3rem 1rem;
   box-shadow: 9px 7px 4.5px 0px rgba(0, 0, 0, 0.25) inset;
@@ -112,7 +116,8 @@ h2 {
   margin-block: 1rem;
 }
 
-#label .label2::before {
+#label .label2::before,
+.expense {
   background-color: #2b2a25;
 }
 
@@ -120,7 +125,8 @@ h2 {
   position: relative;
 }
 
-#label .label3::before {
+#label .label3::before,
+.savings {
   background-color: #39505e;
 }
 
@@ -153,7 +159,7 @@ h2 {
   text-align: center;
   color: var(--white);
   border-radius: 50rem;
-  margin-block: 0 1.5rem;
+  margin-block: 0 1.9rem;
   background-color: #000;
 }
 
@@ -173,6 +179,45 @@ h2 {
 
 .inc-exp-container > div:first-of-type {
   border-right: 1px solid #dedede;
+}
+
+form .form-control {
+  position: relative;
+}
+
+.date {
+  top: 0.5rem;
+  right: 1rem;
+  position: absolute;
+}
+
+.getDate {
+  z-index: 1;
+  top: 3.2rem;
+  right: -5rem;
+  display: none;
+  position: absolute;
+}
+
+.display {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.getDate .inputDate {
+  width: 17rem;
+  border: 1px solid var(--white);
+}
+
+input[type="date"] {
+  background-color: rgba(221, 221, 221, 1);
+}
+
+input[type="date"]:hover {
+  cursor: pointer;
 }
 
 input,
@@ -220,14 +265,18 @@ input,
 
 .show .list li {
   width: 100%;
-  display: flex;
   color: #333;
   padding: 10px;
+  display: block;
   margin: 10px 0;
-  height: 2.7rem;
   position: relative;
   border-radius: 5px;
   background-color: #1f2c33;
+}
+
+.show .list li .top {
+  display: flex;
+  font-size: 1rem;
 }
 
 ul span {
@@ -236,8 +285,24 @@ ul span {
   text-align: center;
 }
 
-ul span .feather {
-  fill: #fff;
+.parent {
+  color: #000;
+  display: none;
+  padding: 1rem;
+  border-radius: 5px;
+  flex-direction: column;
+  background-color: #fff;
+  margin-block: 1.3rem 0.1rem;
+}
+
+.second {
+  margin-bottom: 1rem;
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .feather:hover {
@@ -256,10 +321,6 @@ img[src*="history"] {
 
 img:hover {
   cursor: pointer;
-}
-
-svg {
-  stroke: gainsboro;
 }
 
 footer {
