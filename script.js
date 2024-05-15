@@ -203,7 +203,7 @@ function downloadPDFWithTable() {
   });
 
   // Save the PDF
-  doc.save("table_document.pdf");
+  doc.save("Transactions.pdf");
 }
 
 //Update the balance income and expence
