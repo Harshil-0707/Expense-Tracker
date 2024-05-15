@@ -29,7 +29,13 @@ function getCurrentDate() {
 blurbg.onclick = () => document.body.classList.remove("show");
 
 toggleHistory.forEach((toggle) => {
-  toggle.addEventListener("click", show);
+  toggle.addEventListener("click", (e) => {
+    if (e.currentTarget.classList.contains("download")) {
+      downloadPDFWithTable();
+    } else {
+      show();
+    }
+  });
 });
 
 date.addEventListener("click", () => {
@@ -167,6 +173,37 @@ function addTransactionDOM(transaction) {
       }
     }
   });
+}
+
+// Function to generate and download PDF with a table
+function downloadPDFWithTable() {
+  window.jsPDF = window.jspdf.jsPDF;
+  const doc = new jsPDF();
+
+  // Define table headers and data
+  const headers = [
+    "DATE",
+    "NAME OF TRANSACTION",
+    "TYPE OF TRANSACTION",
+    "AMOUNT",
+  ];
+  const data = [];
+  for (let i = 0; i < transactions.length; i++) {
+    data.push([
+      transactions[i].transactionDate,
+      transactions[i].text,
+      transactions[i].type,
+      transactions[i].amount,
+    ]);
+  }
+  // Auto-generate the table
+  doc.autoTable({
+    head: [headers],
+    body: data,
+  });
+
+  // Save the PDF
+  doc.save("table_document.pdf");
 }
 
 //Update the balance income and expence
