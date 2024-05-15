@@ -207,6 +207,20 @@ form .form-control {
   display: flex;
 }
 
+.images {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.download {
+  display: none;
+}
+
+.show .download {
+  display: block;
+}
+
 .getDate .inputDate {
   width: 17rem;
   border: 1px solid var(--white);
