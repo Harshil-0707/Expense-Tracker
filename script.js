@@ -158,19 +158,15 @@ function addTransactionDOM(transaction) {
   `;
 
   list.appendChild(item);
+  document.querySelectorAll(".calendar").forEach((toggle) => {
+    toggle.addEventListener("click", (e) => {
+      let element = e.currentTarget.parentElement.nextElementSibling;
+      element.classList.toggle("flex");
+    });
+  });
   item.addEventListener("click", function (event) {
     if (event.target.classList.contains("trash")) {
       removeTransaction(transaction, transaction.id);
-    } else {
-      if (event.target.classList.contains("calendar")) {
-        let cal = document.querySelectorAll(".calendar");
-        cal.forEach((toggle) => {
-          toggle.addEventListener("click", (e) => {
-            let element = e.currentTarget.parentElement.nextElementSibling;
-            element.classList.toggle("flex");
-          });
-        });
-      }
     }
   });
 }
@@ -203,7 +199,7 @@ function downloadPDFWithTable() {
   });
 
   // Save the PDF
-  doc.save("Transactions.pdf");
+  doc.save("Transaction history.pdf");
 }
 
 //Update the balance income and expence
