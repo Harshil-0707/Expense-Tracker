@@ -18,7 +18,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
   background-color: #edfbff;
   @media (min-width: 1056px) {
     height: 120dvh;
