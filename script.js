@@ -131,7 +131,7 @@ function selectValues() {
   if (select.value === "Investment") {
     InvestmentAmount += +amount.value;
   } else if (select.value === "Expense") {
-    ExpenseAmount += +amount.value;
+    ExpenseAmount -= +amount.value;
   } else {
     SavingsAmount += +amount.value;
   }
